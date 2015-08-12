@@ -1,92 +1,76 @@
 [user]
-	email = robert.broomandan@gmail.com
-	name = robert broomandan
-
-[alias] ; leave at least 2 spaces between the alias name and the equal sign
-  ad    = add -A
-  br    = checkout -b                  ; create a new branch and switch to it
-  ca    = !git add -A "$(git rev-parse --show-cdup)" && git commit -v --amend
-        ; removes files that are not in version control (skips ignored but includes empty directories)
-  cc    = !git checkout "$(git rev-parse --show-toplevel)" && git clean -fd  "$(git rev-parse --show-cdup)"
-        ; removes files that are not in version control (includes ignored and empty directories)
-  ccc   = !git checkout "$(git rev-parse --show-toplevel)" && git clean -fdx "$(git rev-parse --show-cdup)"
-  cf    = cat-file -p
-  ch    = diff --name-status -r
-  ci    = !git add -A "$(git rev-parse --show-cdup)" && git commit -av
-  co    = checkout
-  cp    = cherry-pick
-  df    = diff
-  dw    = difftool --tool=winmerge
-  ds    = diff --staged
-  dv    = difftool --tool=vimdiff
-  fw    = log --follow                 ; file commit history needs to be followed by a file path
-  gb    = gui blame                    ; gui interface to git blame needs to be followed by a file path
-  last  = log -p -1 HEAD
-  ld    = log -p                       ; show log with diffs (add -x to show only the x most recent entries)
-  lf    = ls-files -s
-  lg    = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
-  lo    = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
-  lr    = ls-remote
-  ls    = log --decorate --pretty=oneline --stat
-  lt    = !git --no-pager log --color --decorate --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit -30 && git --no-pager log --pretty=format:'%n' -1
-  mg    = merge
-  ms    = checkout master
-  ph    = push heroku
-  po    = push origin
-  pr    = pull --rebase
-  rf    = rm -f                        ; delete force (for files)
-  rh    = reset HEAD --
-  rr    = rm -r                        ; delete recursively (for directories)
-  rs    = rm --cached                  ; delete from staging
-  so    = stash pop                    ; stash pop
-  st    = status
-  su    = stash                        ; stash push
-  undo  = reset --hard HEAD~
-  ;alias = !cat ~/.gitconfig | awk '/^[ \t]{2}[a-z]+[ \t]{2,4}=/' | sort
-
+	name = Robert Broomandan
+	email = rbroomandan@gmail.com
+[alias]
+	ad = add -A
+	br = checkout -b
+	db = branch -D
+	cc = !git checkout$(git rev-parse --show-toplevel)&& git clean -fd$(git rev-parse --show-cdup)
+	ccc = !git checkout$(git rev-parse --show-toplevel)&& git clean -fdx$(git rev-parse --show-cdup)
+	cf = cat-file -p
+	ch = diff --name-status -r
+	ac = !git add -A$(git rev-parse --show-cdup)&& git commit -av
+	co = checkout
+	cp = cherry-pick
+	df = diff
+	dt = difftool
+	dw = difftool --tool=winmerge
+	ds = diff --staged
+	dv = difftool --tool=vimdiff
+	fw = log --follow
+	gb = gui blame
+	last = log -p -1 HEAD
+	ld = log -p
+	lf = ls-files -s
+	lg = log --color --follow --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
+	lo = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
+	lr = ls-remote
+	ls = log --decorate --pretty=oneline --stat
+	lt = !git --no-pager log --color --decorate --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit -30 && git --no-pager log --pretty=format:'%n' -1
+	mg = merge --no-ff
+	ms = checkout master
+	po = push origin
+	pr = pull --rebase
+	rf = rm -f
+	rh = reset HEAD --
+	rr = rm -r
+	rs = rm --cached
+	so = stash pop
+	st = status
+	su = stash
+	undo = reset --hard HEAD~
 [core]
-  editor = vim
-  excludesfile = ~/.gitignore
-
+	editor = vim
+	excludesfile = ~/.gitignore
+	autocrlf = true
 [mirror]
-  summary = true
-
+	summary = true
 [branch]
-  autosetupmerge = true
-
+	autosetupmerge = true
 [help]
-  autocorrect = 1
-
+	autocorrect = 1
 [push]
-  default = matching
-
+	default = matching
 [color]
-  ui = auto
-  branch = auto
-  status = auto
-  diff = auto
-
+	ui = auto
+	branch = auto
+	status = auto
+	diff = auto
 [color "diff"]
-  meta = yellow
-  frag = cyan
-  old = red
-  new = green
-
+	meta = yellow
+	frag = cyan
+	old = red
+	new = green
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "status"]
-  added = blue
-  changed = green
-  untracked = cyan
-
+	added = magenta
+	changed = green
+	untracked = cyan
 [github]
 	user = broomandan
-[diff]
-	tool = winmerge
-	
 [difftool]
 	prompt = false
 [mergetool]
@@ -94,12 +78,24 @@
 	keepBackup = false
 	keepTemporaries = false
 [merge]
-	tool = winmerge
+	tool = BeyondCompare4
+	guitool = Beyondcompare4
 [mergetool "winmerge"]
 	name = WinMerge
 	trustExitCode = true
 	cmd = ~/winmerge-merge.sh $LOCAL $REMOTE $BASE $MERGED
-[difftool "winmerge"]
-	name = WinMerge
-	trustExitCode = true
-	cmd = ~/winmerge-merge.sh $LOCAL $REMOTE
+[diff]
+	tool = beyondcompare4
+	guitool = beyondcompare4
+[difftool "bc4"]
+	path = C:/Program Files (x86)/Beyond Compare 4/bcomp.exe
+[push]
+	default = simple
+[credential]
+	helper = !\\\"C:/Program Files (x86)/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe\\\"
+[difftool "beyondcompare4"]
+	path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+	cmd = \"C:/Program Files (x86)/Beyond Compare 4/BComp.exe\" \"$LOCAL\" \"$REMOTE\"
+[mergetool "BeyondCompare4"]
+	path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+	cmd = \"C:/Program Files (x86)/Beyond Compare 4/BComp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
