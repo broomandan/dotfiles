@@ -1,0 +1,1 @@
+alias sync='echo "Running git fetch upstream" && git fetch upstream && echo "Running git checkout master " && git checkout master && echo "Running git rebase upstream/master" && git rebase upstream/master'
